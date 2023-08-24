@@ -211,3 +211,37 @@ const sumAll = (a: number, b: number, c: number = 2): number => {
 logMsg(addAll(2, 3, 2));
 logMsg(addAll(2, 3));
 logMsg(sumAll(2, 3));
+
+// Rest parameters
+// it must always be at the last the rest paramters
+const total = (a: number, ...nums: number[]): number => {
+  return (
+    a +
+    nums.reduce((prev, curr) => {
+      console.log(prev, curr);
+      return prev + curr;
+    })
+  );
+};
+
+logMsg(total(2, 4, 5, 5, 6, 7, 3));
+
+// automatically the error comes with a never type
+const createError = (errMsg: string) => {
+  throw new Error(errMsg);
+};
+
+// you can as well set it to never
+// const createError = (errMsg: string): never => {
+//   throw new Error(errMsg);
+// };
+
+// also for infinite loop
+
+const infinite = () => {
+  let i: number = 1;
+  while (true) {
+    i++;
+    if (i > 100) break;
+  }
+};
