@@ -245,3 +245,49 @@ const infinite = () => {
     if (i > 100) break;
   }
 };
+
+// custom guard type
+const isNumber = (value: any): boolean => {
+  return typeof value === "number" ? true : false;
+};
+
+// the use of never type
+const numberOrString = (value: number | string): string => {
+  if (typeof value === "string") return "string";
+  if (typeof value === "number") return "number";
+  return createError("This should never happen!");
+};
+
+// type casting or type assertions
+type One = string;
+type Two = string | number;
+type Three = "hello";
+
+// converting to more or less speicfic
+let a1: One = "hello";
+let b1 = a as Two; //less specific
+let c1 = a1 as Three; //more specific
+
+// this cant be used in react
+let d1 = <One>"world";
+let e1 = <string | number>"world";
+
+const addOrConcat = (
+  a: number,
+  b: number,
+  c: "add" | "concat"
+): number | string => {
+  if (c === "add") return a + b;
+  return "" + a + b;
+};
+
+let myVal: string = addOrConcat(2, 2, "concat") as string;
+
+// BE CAREFUL TS SEES NO PROBLEM HERE ---BUT A STRING IS RETURNED
+let nextVal: number = addOrConcat(2, 2, "concat") as number;
+
+// this will not work
+10 as string;
+
+// double casting or foward casting or two assertions
+10 as unknown as string;
