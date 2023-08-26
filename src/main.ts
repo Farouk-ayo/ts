@@ -287,7 +287,12 @@ let myVal: string = addOrConcat(2, 2, "concat") as string;
 let nextVal: number = addOrConcat(2, 2, "concat") as number;
 
 // this will not work
-10 as string;
+// 10 as string;
 
 // double casting or foward casting or two assertions
 10 as unknown as string;
+
+// THE DOM
+const img = document.querySelector("img");
+const myImg = document.getElementById("#Img") as HTMLImageElement;
+const nextImg = <HTMLImageElement>document.getElementById("#img");

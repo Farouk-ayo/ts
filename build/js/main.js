@@ -170,3 +170,38 @@ const infinite = () => {
             break;
     }
 };
+// custom guard type
+const isNumber = (value) => {
+    return typeof value === "number" ? true : false;
+};
+// the use of never type
+const numberOrString = (value) => {
+    if (typeof value === "string")
+        return "string";
+    if (typeof value === "number")
+        return "number";
+    return createError("This should never happen!");
+};
+// converting to more or less speicfic
+let a1 = "hello";
+let b1 = a; //less specific
+let c1 = a1; //more specific
+// this cant be used in react
+let d1 = "world";
+let e1 = "world";
+const addOrConcat = (a, b, c) => {
+    if (c === "add")
+        return a + b;
+    return "" + a + b;
+};
+let myVal = addOrConcat(2, 2, "concat");
+// BE CAREFUL TS SEES NO PROBLEM HERE ---BUT A STRING IS RETURNED
+let nextVal = addOrConcat(2, 2, "concat");
+// this will not work
+// 10 as string;
+// double casting or foward casting or two assertions
+10;
+// THE DOM
+const img = document.querySelector("img");
+const myImg = document.getElementById("#Img");
+const nextImg = document.getElementById("#img");
