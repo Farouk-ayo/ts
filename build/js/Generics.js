@@ -83,4 +83,11 @@ class StateObject {
         this.data = value;
     }
 }
-const ;
+const store = new StateObject("John");
+console.log(store.state);
+const storeStr = new StateObject("John");
+// storeStr.state=(43)
+console.log(store.state);
+const storeState = new StateObject([15]);
+storeState.state = ["Dave", 43, true];
+console.log(storeState.state);

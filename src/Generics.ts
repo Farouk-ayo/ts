@@ -111,4 +111,13 @@ class StateObject<T> {
   }
 }
 
-const;
+const store = new StateObject("John");
+console.log(store.state);
+
+const storeStr = new StateObject<string>("John");
+// storeStr.state=(43)
+console.log(store.state);
+
+const storeState = new StateObject<(string | number | boolean)[]>([15]);
+storeState.state = ["Dave", 43, true];
+console.log(storeState.state);
