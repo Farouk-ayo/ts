@@ -73,3 +73,59 @@ const preview: AssignPreview = {
   studentId: "k124",
   title: "Final Project",
 };
+
+// exclude and extract
+// they work with string union type
+
+type adjustedGrade = Exclude<LetterGrades, "U">;
+
+type highGrades = Extract<LetterGrades, "A" | "B">;
+
+// NonNullable
+type AllPossibleGrade = "Dave" | "John" | null | undefined;
+type NamesOnly = NonNullable<AllPossibleGrade>;
+
+// return Type
+
+// type newAssign = {
+//   title: string;
+//   points: number;
+// };
+const createNewAssign = (title: string, points: number) => {
+  return {
+    title,
+    points,
+  };
+};
+
+type NewAssign = ReturnType<typeof createNewAssign>;
+const tsAssign: NewAssign = createNewAssign("Utility types", 100);
+
+console.log(tsAssign);
+
+// parameters
+type AssignParams = Parameters<typeof createNewAssign>;
+const assignArgs: AssignParams = ["Generic", 100];
+const tsAssign2: NewAssign = createNewAssign(...assignArgs);
+console.log(tsAssign2);
+
+// awaited utility , works with promise fetching of datas
+interface User {
+  id: number;
+  name: string;
+  username: string;
+  email: string;
+}
+
+const fetchUsers = async (): Promise<User[]> => {
+  const data = await fetch(`https://jsonplaceholder.typicode.com/users`)
+    .then((res) => {
+      return res.json();
+    })
+    .catch((err) => {
+      if (err instanceof Error) console.log(err.message);
+    });
+  return data;
+};
+
+fetchUsers().then((users) => console.log(users));
